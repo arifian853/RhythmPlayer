@@ -1,4 +1,4 @@
-# exampleapp1
+# rhythm_player
 
 A new Flutter project.
 
