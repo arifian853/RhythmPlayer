@@ -35,17 +35,18 @@ class _SplashScreenState extends State<SplashScreen>
       body: Container(
           width: double.infinity,
           decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [
-            Color.fromRGBO(0, 117, 102, 1),
-            Color.fromRGBO(143, 193, 181, 1)
-          ], begin: Alignment.topRight, end: Alignment.bottomLeft)),
+            color: Color.fromRGBO(0, 117, 102, 1),
+          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
-              Icon(
-                Icons.edit,
-                size: 80,
-                color: Colors.amber,
+              // Icon(
+              //   Icons.edit,
+              //   size: 80,
+              //   color: Colors.amber,
+              // ),
+              Image(
+                image: AssetImage('assets/images/tone.png'),
               ),
               SizedBox(height: 20),
               Text(
