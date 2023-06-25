@@ -18,11 +18,10 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'RhythmPlayer Music App',
       theme: ThemeData(
-        textTheme: Theme.of(context).textTheme.apply(
-          bodyColor: Color.fromRGBO(0, 117, 102, 1),
-          displayColor: Color.fromRGBO(0, 117, 102, 1),
-        )
-      ),
+          textTheme: Theme.of(context).textTheme.apply(
+                bodyColor: const Color.fromRGBO(0, 0, 0, 1),
+                displayColor: const Color.fromRGBO(0, 0, 0, 1),
+              )),
       home: const SplashScreen(),
       getPages: [
         GetPage(name: '/', page: () => const HomeMusic()),
@@ -32,4 +31,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

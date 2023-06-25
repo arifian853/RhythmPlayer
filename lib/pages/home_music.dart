@@ -6,16 +6,7 @@ class HomeMusic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Colors.green.shade800.withOpacity(0.8),
-            Colors.black12.withOpacity(0.6),
-          ],
-        ),
-      ),
+      decoration: const BoxDecoration(color: Color.fromRGBO(12, 12, 12, 0.6)),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: const _CustomAppBar(),
@@ -27,34 +18,32 @@ class HomeMusic extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Last Playing',
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleLarge!
-                        .copyWith(fontWeight: FontWeight.bold),
-                  ),
                   const SizedBox(
                     height: 20,
                   ),
                   TextFormField(
                     decoration: InputDecoration(
                       filled: true,
-                      fillColor: Color.fromRGBO(142, 193, 180, 1),
+                      fillColor: const Color.fromRGBO(36, 131, 21, 1),
                       hintText: 'Search now...',
                       hintStyle: Theme.of(context)
                           .textTheme
                           .bodyMedium!
                           .copyWith(color: Colors.black12),
-                      suffixIcon: Icon(
+                      suffixIcon: const Icon(
                         Icons.search,
                         color: Colors.black12,
                       ),
                       border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15.0),
+                          borderRadius: BorderRadius.circular(20.0),
                           borderSide: BorderSide.none),
                     ),
-                  )
+                  ),
+                  Text(
+                    'Last Playing',
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                        fontWeight: FontWeight.bold, color: Colors.white),
+                  ),
                 ],
               ),
             )
@@ -66,17 +55,15 @@ class HomeMusic extends StatelessWidget {
 }
 
 class _CustomNavBar extends StatelessWidget {
-  const _CustomNavBar({
-    super.key,
-  });
+  const _CustomNavBar();
 
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Color.fromRGBO(0, 0, 0, 1),
+        backgroundColor: const Color.fromRGBO(0, 0, 0, 1),
         unselectedItemColor: Colors.green.shade200.withOpacity(0.8),
-        selectedItemColor: Color.fromRGBO(0, 117, 102, 1),
+        selectedItemColor: const Color.fromRGBO(0, 117, 102, 1),
         showSelectedLabels: false,
         showUnselectedLabels: false,
         items: const [
@@ -93,9 +80,7 @@ class _CustomNavBar extends StatelessWidget {
 }
 
 class _CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const _CustomAppBar({
-    super.key,
-  });
+  const _CustomAppBar();
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +91,7 @@ class _CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         Container(
           margin: const EdgeInsets.only(right: 20),
-          child: CircleAvatar(
+          child: const CircleAvatar(
             backgroundImage: AssetImage('assets/images/tone.png'),
           ),
         )

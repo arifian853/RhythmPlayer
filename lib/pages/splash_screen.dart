@@ -16,9 +16,9 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
 
-    Future.delayed(Duration(seconds: 2), () {
-      Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (_) => HomeMusic()));
+    Future.delayed(const Duration(seconds: 2), () {
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (_) => const HomeMusic()));
     });
   }
 
@@ -34,12 +34,12 @@ class _SplashScreenState extends State<SplashScreen>
     return Scaffold(
       body: Container(
           width: double.infinity,
-          decoration: BoxDecoration(
-            color: Color.fromRGBO(0, 117, 102, 1),
+          decoration: const BoxDecoration(
+            color: Color.fromRGBO(36, 131, 21, 1),
           ),
-          child: Column(
+          child: const Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children: [
               // Icon(
               //   Icons.edit,
               //   size: 80,
