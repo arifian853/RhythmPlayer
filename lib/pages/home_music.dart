@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:rhythm_player/models/song_model.dart';
+import 'package:rhythm_player/widget/song_card.dart';
 
 class HomeMusic extends StatelessWidget {
   const HomeMusic({super.key});
 
   @override
   Widget build(BuildContext context) {
+    List<Song> songs = Song.songs;
     return Container(
       decoration: const BoxDecoration(color: Color.fromRGBO(12, 12, 12, 0.6)),
       child: Scaffold(
@@ -13,48 +16,71 @@ class HomeMusic extends StatelessWidget {
         bottomNavigationBar: const _CustomNavBar(),
         body: SingleChildScrollView(
           child: Column(children: [
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: const Color.fromRGBO(36, 131, 21, 1),
-                      hintText: 'Search now...',
-                      hintStyle: Theme.of(context)
-                          .textTheme
-                          .bodyMedium!
-                          .copyWith(color: Colors.black12),
-                      suffixIcon: const Icon(
-                        Icons.search,
-                        color: Colors.black12,
-                      ),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                          borderSide: BorderSide.none),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: Text(
-                      'Last Playing',
-                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                          fontWeight: FontWeight.bold, color: Colors.white),
-                    ),
-                  ),
-                ],
-              ),
+            const _DiscoverMusic(),
+            const SizedBox(height: 20.0),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.30,
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: songs.length,
+                  itemBuilder: (context, index) {
+                    return SongCard(song: songs[index]);
+                  }),
             )
           ]),
         ),
+      ),
+    );
+  }
+}
+
+class _DiscoverMusic extends StatelessWidget {
+  const _DiscoverMusic({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(
+            height: 20,
+          ),
+          TextFormField(
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: const Color.fromRGBO(36, 131, 21, 1),
+              hintText: 'Search now...',
+              hintStyle: Theme.of(context)
+                  .textTheme
+                  .bodyMedium!
+                  .copyWith(color: Colors.black12),
+              suffixIcon: const Icon(
+                Icons.search,
+                color: Colors.black12,
+              ),
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                  borderSide: BorderSide.none),
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          const Padding(
+            padding: EdgeInsets.only(top: 10),
+            // child: Text(
+            //   'Last Playing',
+            //   style: Theme.of(context)
+            //       .textTheme
+            //       .titleLarge!
+            //       .copyWith(fontWeight: FontWeight.bold, color: Colors.white),
+            // ),
+          ),
+        ],
       ),
     );
   }
@@ -74,13 +100,12 @@ class _CustomNavBar extends StatelessWidget {
         showUnselectedLabels: false,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.music_note), label: 'Music'),
           BottomNavigationBarItem(
               icon: Icon(Icons.play_circle_outline), label: 'Playlist'),
           BottomNavigationBarItem(
               icon: Icon(Icons.favorite_outline), label: 'Favourite'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.people_outline), label: 'Profile')
+          BottomNavigationBarItem(icon: Icon(Icons.music_note), label: 'Music'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ]);
   }
 }
@@ -97,9 +122,7 @@ class _CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         Container(
           margin: const EdgeInsets.only(right: 20),
-          child: const CircleAvatar(
-            backgroundImage: AssetImage('assets/images/tone.png'),
-          ),
+          child: const CircleAvatar(child: Icon(Icons.person_outlined)),
         )
       ],
     );
