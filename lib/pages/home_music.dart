@@ -35,14 +35,20 @@ class HomeMusic extends StatelessWidget {
                         color: Colors.black12,
                       ),
                       border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.0),
+                          borderRadius: BorderRadius.circular(30.0),
                           borderSide: BorderSide.none),
                     ),
                   ),
-                  Text(
-                    'Last Playing',
-                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        fontWeight: FontWeight.bold, color: Colors.white),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Text(
+                      'Last Playing',
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          fontWeight: FontWeight.bold, color: Colors.white),
+                    ),
                   ),
                 ],
               ),
