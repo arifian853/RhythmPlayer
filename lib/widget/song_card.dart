@@ -12,7 +12,7 @@ class SongCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(5.0),
+      margin: const EdgeInsets.all(10.0),
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
@@ -39,7 +39,7 @@ class SongCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 8.0, top: 8.0),
+                      padding: const EdgeInsets.only(left: 15.0, top: 15.0),
                       child: Text(
                         'Discover Weekly',
                         style: Theme.of(context).textTheme.bodyMedium!.copyWith(
@@ -47,7 +47,7 @@ class SongCard extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 8.0, top: 8.0),
+                      padding: const EdgeInsets.only(left: 15.0, top: 15.0),
                       child: Text(
                         song.description,
                         style: Theme.of(context).textTheme.bodySmall!.copyWith(
