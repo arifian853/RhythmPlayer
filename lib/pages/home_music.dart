@@ -70,15 +70,15 @@ class _DiscoverMusic extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          const Padding(
-            padding: EdgeInsets.only(top: 10),
-            // child: Text(
-            //   'Last Playing',
-            //   style: Theme.of(context)
-            //       .textTheme
-            //       .titleLarge!
-            //       .copyWith(fontWeight: FontWeight.bold, color: Colors.white),
-            // ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Text(
+              'Last Playing',
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge!
+                  .copyWith(fontWeight: FontWeight.bold, color: Colors.white),
+            ),
           ),
         ],
       ),

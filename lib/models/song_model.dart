@@ -29,6 +29,6 @@ class Song {
         artist: 'Neck Deep',
         description: 'Lorem ipsum dolor sit amet...',
         url: 'assets/music/december.mp3',
-        coverUrl: 'assets/images/neckdeep.png'),
+        coverUrl: 'assets/images/neckdeep.jpg'),
   ];
 }
