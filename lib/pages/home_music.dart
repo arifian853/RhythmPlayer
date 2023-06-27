@@ -116,7 +116,7 @@ class _CustomNavBar extends StatelessWidget {
         type: BottomNavigationBarType.fixed,
         backgroundColor: const Color.fromRGBO(36, 131, 21, 1),
         unselectedItemColor: Colors.white,
-        selectedItemColor: const Color.fromRGBO(0, 117, 102, 1),
+        selectedItemColor: Colors.black,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         items: const [

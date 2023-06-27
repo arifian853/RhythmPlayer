@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       home: const SplashScreen(),
       getPages: [
         GetPage(name: '/', page: () => const HomeMusic()),
-        GetPage(name: '/song', page: () => const MusicList()),
+        GetPage(name: '/music', page: () => const MusicList()),
         GetPage(name: '/playlist', page: () => const PlaylistPage()),
       ],
     );

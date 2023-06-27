@@ -16,8 +16,9 @@ class MainMusicCard extends StatelessWidget {
       onTap: () {
         Get.toNamed('/music', arguments: music);
       },
-      child: SizedBox(
-        height: 60,
+      child: Container(
+        height: 65,
+        margin: const EdgeInsets.only(bottom: 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -27,7 +28,7 @@ class MainMusicCard extends StatelessWidget {
                   height: 50, width: 50, fit: BoxFit.cover),
             ),
             const SizedBox(
-              width: 10,
+              width: 20,
             ),
             Expanded(
               child: Column(
@@ -36,16 +37,12 @@ class MainMusicCard extends StatelessWidget {
                 children: [
                   Text(
                     music.title,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyLarge!
-                        .copyWith(fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                        color: Colors.white, fontWeight: FontWeight.bold),
                   ),
                   Text(music.artist,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall!
-                          .copyWith(fontWeight: FontWeight.bold))
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          color: Colors.white, fontWeight: FontWeight.bold))
                 ],
               ),
             ),
