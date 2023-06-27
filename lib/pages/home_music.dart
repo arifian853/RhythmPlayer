@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:rhythm_player/models/music_play_model.dart';
 import 'package:rhythm_player/models/song_model.dart';
+import 'package:rhythm_player/widget/main_music_card.dart';
 import 'package:rhythm_player/widget/song_card.dart';
 
 class HomeMusic extends StatelessWidget {
@@ -8,6 +10,7 @@ class HomeMusic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Song> songs = Song.songs;
+    List<Music> musics = Music.musics;
     return Container(
       decoration: const BoxDecoration(color: Color.fromRGBO(12, 12, 12, 0.6)),
       child: Scaffold(
@@ -26,6 +29,26 @@ class HomeMusic extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return SongCard(song: songs[index]);
                   }),
+            ),
+            Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(
+                    'Music',
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                        fontWeight: FontWeight.bold, color: Colors.white),
+                  ),
+                ),
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: musics.length,
+                  itemBuilder: ((context, index) {
+                    return MainMusicCard(music: musics[index]);
+                  }),
+                )
+              ],
             )
           ]),
         ),
@@ -35,9 +58,7 @@ class HomeMusic extends StatelessWidget {
 }
 
 class _DiscoverMusic extends StatelessWidget {
-  const _DiscoverMusic({
-    super.key,
-  });
+  const _DiscoverMusic();
 
   @override
   Widget build(BuildContext context) {
@@ -93,8 +114,8 @@ class _CustomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: const Color.fromRGBO(0, 0, 0, 1),
-        unselectedItemColor: Colors.green.shade200.withOpacity(0.8),
+        backgroundColor: const Color.fromRGBO(36, 131, 21, 1),
+        unselectedItemColor: Colors.white,
         selectedItemColor: const Color.fromRGBO(0, 117, 102, 1),
         showSelectedLabels: false,
         showUnselectedLabels: false,

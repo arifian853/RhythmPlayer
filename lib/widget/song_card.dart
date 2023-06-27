@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:rhythm_player/models/song_model.dart';
 
 class SongCard extends StatelessWidget {
@@ -11,24 +12,26 @@ class SongCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(10.0),
-      child: Stack(
-        alignment: Alignment.bottomCenter,
-        children: [
-          Container(
-            width: MediaQuery.of(context).size.width * 0.45,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15.0),
-              image: DecorationImage(
-                image: AssetImage(song.coverUrl),
-                fit: BoxFit.cover,
+    return InkWell(
+      onTap: () {
+        Get.toNamed('/song', arguments: song);
+      },
+      child: Container(
+        margin: const EdgeInsets.all(8.0),
+        child: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width * 0.45,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15.0),
+                image: DecorationImage(
+                  image: AssetImage(song.coverUrl),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 5.0),
-            child: Container(
+            Container(
               height: 50,
               width: MediaQuery.of(context).size.width * 0.45,
               decoration: BoxDecoration(
@@ -39,7 +42,7 @@ class SongCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 15.0, top: 15.0),
+                      padding: const EdgeInsets.only(left: 10.0, top: 10.0),
                       child: Text(
                         'Discover Weekly',
                         style: Theme.of(context).textTheme.bodyMedium!.copyWith(
@@ -47,17 +50,17 @@ class SongCard extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 15.0, top: 15.0),
+                      padding: const EdgeInsets.only(left: 10.0, top: 10.0),
                       child: Text(
-                        song.description,
+                        'See your latest played musics',
                         style: Theme.of(context).textTheme.bodySmall!.copyWith(
                             color: Colors.white, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ]),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
