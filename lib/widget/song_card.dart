@@ -14,10 +14,10 @@ class SongCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.toNamed('/song', arguments: song);
+        Get.toNamed('/playlist', arguments: song);
       },
       child: Container(
-        margin: const EdgeInsets.all(8.0),
+        margin: const EdgeInsets.only(left: 10.0),
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
@@ -42,7 +42,11 @@ class SongCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 10.0, top: 10.0),
+                      padding: const EdgeInsets.only(
+                        top: 10.0,
+                        left: 10.0,
+                        right: 10.0,
+                      ),
                       child: Text(
                         'Discover Weekly',
                         style: Theme.of(context).textTheme.bodyMedium!.copyWith(
@@ -50,9 +54,13 @@ class SongCard extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 10.0, top: 10.0),
+                      padding: const EdgeInsets.only(
+                        bottom: 10.0,
+                        left: 10.0,
+                        right: 10.0,
+                      ),
                       child: Text(
-                        'See your latest played musics',
+                        'Weekly favourite musics',
                         style: Theme.of(context).textTheme.bodySmall!.copyWith(
                             color: Colors.white, fontWeight: FontWeight.bold),
                       ),

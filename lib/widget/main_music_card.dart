@@ -18,14 +18,21 @@ class MainMusicCard extends StatelessWidget {
       },
       child: Container(
         height: 65,
-        margin: const EdgeInsets.only(bottom: 10),
+        margin: const EdgeInsets.all(5.0),
+        decoration: BoxDecoration(
+            color:const Color.fromARGB(221, 43, 42, 42),
+            borderRadius: BorderRadius.circular(10.0)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(15.0),
-              child: Image.network(music.imageUrl,
-                  height: 50, width: 50, fit: BoxFit.cover),
+              child: Image.network(
+                music.posterUrl,
+                height: 50,
+                width: 50,
+                fit: BoxFit.cover,
+              ),
             ),
             const SizedBox(
               width: 20,
@@ -48,7 +55,13 @@ class MainMusicCard extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(right: 8.0),
-              child: Text(music.length),
+              child: Text(
+                music.length,
+                style: Theme.of(context)
+                    .textTheme
+                    .labelMedium!
+                    .copyWith(color: Colors.white),
+              ),
             ),
             IconButton(
               onPressed: () {},

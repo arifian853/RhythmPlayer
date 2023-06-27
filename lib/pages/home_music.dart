@@ -31,6 +31,7 @@ class HomeMusic extends StatelessWidget {
                   }),
             ),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
                   padding: const EdgeInsets.all(20.0),
@@ -70,26 +71,29 @@ class _DiscoverMusic extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          TextFormField(
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: const Color.fromRGBO(36, 131, 21, 1),
-              hintText: 'Search now...',
-              hintStyle: Theme.of(context)
-                  .textTheme
-                  .bodyMedium!
-                  .copyWith(color: Colors.black12),
-              suffixIcon: const Icon(
-                Icons.search,
-                color: Colors.black12,
+          Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: TextFormField(
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: const Color.fromRGBO(36, 131, 21, 1),
+                hintText: 'Search now...',
+                hintStyle: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(color: Colors.white),
+                suffixIcon: const Icon(
+                  Icons.search,
+                  color: Colors.white,
+                ),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                    borderSide: BorderSide.none),
               ),
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30.0),
-                  borderSide: BorderSide.none),
             ),
           ),
           const SizedBox(
-            height: 20,
+            height: 10,
           ),
           Padding(
             padding: const EdgeInsets.only(top: 10),

@@ -5,12 +5,12 @@ class Music {
   final String artist;
   final String length;
   final List<Song> songs;
-  final String imageUrl;
+  final String posterUrl;
 
   Music({
     required this.title,
     required this.songs,
-    required this.imageUrl,
+    required this.posterUrl,
     required this.artist,
     required this.length,
   });
@@ -21,49 +21,49 @@ class Music {
       artist: 'My Chemical Romance',
       length: '5.01',
       songs: Song.songs,
-      imageUrl: 'assets/images/MCR.png',
+      posterUrl: 'assets/images/MCR.png',
     ),
     Music(
       title: 'Never Gonna Give You Up',
       artist: 'Rick Astley',
       length: '3.33',
       songs: Song.songs,
-      imageUrl: 'assets/images/rickastley.jpg',
+      posterUrl: 'assets/images/rickastley.jpg',
     ),
     Music(
       title: 'Fix You',
       artist: 'Coldplay',
       length: '4.56',
       songs: Song.songs,
-      imageUrl: 'assets/images/fixyou.jpg',
+      posterUrl: 'assets/images/fixyou.jpg',
     ),
     Music(
       title: 'December',
       artist: 'Neck Deep',
       length: '3.39',
       songs: Song.songs,
-      imageUrl: 'assets/images/neckdeep.jpg',
+      posterUrl: 'assets/images/neckdeep.jpg',
     ),
     Music(
       title: 'Havana',
       artist: 'Camilla Cabello',
       length: '3.39',
       songs: Song.songs,
-      imageUrl: 'assets/images/havana.png',
+      posterUrl: 'assets/images/havana.png',
     ),
     Music(
       title: 'In The End',
       artist: 'Linkin Park',
       length: '3.39',
       songs: Song.songs,
-      imageUrl: 'assets/images/intheend.jpg',
+      posterUrl: 'assets/images/intheend.jpg',
     ),
     Music(
       title: 'Dont Blame Me',
       artist: 'Taylor Swift',
       length: '3.57',
       songs: Song.songs,
-      imageUrl: 'assets/images/taylorswift.jpg',
+      posterUrl: 'assets/images/taylorswift.jpg',
     ),
   ];
 }

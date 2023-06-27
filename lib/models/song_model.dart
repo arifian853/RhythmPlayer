@@ -55,13 +55,6 @@ class Song {
       coverUrl: 'assets/images/intheend.jpg',
     ),
     Song(
-      title: 'In The End',
-      artist: 'Linkin Park',
-      description: 'Lorem ipsum dolor sit amet...',
-      url: 'assets/music/intheend.mp3',
-      coverUrl: 'assets/images/intheend.jpg',
-    ),
-    Song(
       title: 'Dont Blame Me',
       artist: 'Taylor Swift',
       description: 'Lorem ipsum dolor sit amet...',
