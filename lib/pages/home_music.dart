@@ -64,12 +64,12 @@ class _DiscoverMusic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(10.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(
-            height: 20,
+            height: 10,
           ),
           Padding(
             padding: const EdgeInsets.all(5.0),
@@ -147,7 +147,7 @@ class _CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         Container(
           margin: const EdgeInsets.only(right: 20),
-          child: const CircleAvatar(child: Icon(Icons.person_outlined)),
+          child: const CircleAvatar(backgroundColor: Colors.green, child: Icon(Icons.person_outlined)),
         )
       ],
     );

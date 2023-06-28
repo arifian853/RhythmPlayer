@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:rhythm_player/pages/home_music.dart';
 import 'package:rhythm_player/pages/music_list.dart';
 import 'package:rhythm_player/pages/playlist_page.dart';
+import 'package:rhythm_player/pages/song_page.dart';
 import 'package:rhythm_player/pages/splash_screen.dart';
 
 void main() {
@@ -24,7 +25,9 @@ class MyApp extends StatelessWidget {
               )),
       home: const SplashScreen(),
       getPages: [
-        GetPage(name: '/', page: () => const HomeMusic()),
+        GetPage(name: '/', page: () => const SplashScreen()),
+        GetPage(name: '/home', page: () => const HomeMusic()),
+        GetPage(name: '/song', page: () => const SongPage()),
         GetPage(name: '/music', page: () => const MusicList()),
         GetPage(name: '/playlist', page: () => const PlaylistPage()),
       ],
