@@ -15,14 +15,14 @@ class SongPage extends StatefulWidget {
 
 class _SongPageState extends State<SongPage> {
   AudioPlayer audioPlayer = AudioPlayer();
-  Music music = Music.musics[0];
+  Music music = Get.arguments ?? Music.musics[0];
 
   @override
   void initState() {
     super.initState();
 
     audioPlayer.setAudioSource(ConcatenatingAudioSource(children: [
-      AudioSource.uri(Uri.parse('assets:////${music.url}')),
+      AudioSource.uri(Uri.parse('asset:///${music.url}')),
     ]));
   }
 
@@ -61,37 +61,14 @@ class _SongPageState extends State<SongPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(15.0),
-                child: Image(
-                  image: AssetImage(music.posterUrl),
-                  height: 250,
-                  width: 250,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Text(music.title,
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      color: Colors.white, fontWeight: FontWeight.bold)),
-              const SizedBox(
-                height: 10,
-              ),
-              Text(
-                music.artist,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodySmall!
-                    .copyWith(color: Colors.white),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
               _MusicPlayer(
-                  seekBarDataStream: _seekBarDataStream,
-                  audioPlayer: audioPlayer),
+                music: music,
+                seekBarDataStream: _seekBarDataStream,
+                audioPlayer: audioPlayer,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
             ],
           ),
         ),
@@ -102,11 +79,12 @@ class _SongPageState extends State<SongPage> {
 
 class _MusicPlayer extends StatelessWidget {
   const _MusicPlayer({
-    super.key,
+    required this.music,
     required Stream<SeekBarData> seekBarDataStream,
     required this.audioPlayer,
   }) : _seekBarDataStream = seekBarDataStream;
 
+  final Music music;
   final Stream<SeekBarData> _seekBarDataStream;
   final AudioPlayer audioPlayer;
 
@@ -116,6 +94,36 @@ class _MusicPlayer extends StatelessWidget {
       padding: const EdgeInsets.only(top: 5, bottom: 15, right: 20, left: 20),
       child: Column(
         children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(15.0),
+            child: Image(
+              image: AssetImage(music.posterUrl),
+              height: 250,
+              width: 250,
+              fit: BoxFit.cover,
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Text(music.title,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium!
+                  .copyWith(color: Colors.white, fontWeight: FontWeight.bold)),
+          const SizedBox(
+            height: 5,
+          ),
+          Text(
+            music.artist,
+            style: Theme.of(context)
+                .textTheme
+                .bodySmall!
+                .copyWith(color: Colors.white),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
           StreamBuilder<SeekBarData>(
             stream: _seekBarDataStream,
             builder: (context, snapshot) {
