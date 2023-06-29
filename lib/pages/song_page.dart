@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:rhythm_player/models/music_play_model.dart';
-import 'package:rhythm_player/widget/seekBar.dart';
+import 'package:rhythm_player/widget/player_buttons.dart';
+import 'package:rhythm_player/widget/seek_bar.dart';
 import 'package:rxdart/rxdart.dart' as rxdart;
 
 class SongPage extends StatefulWidget {
@@ -14,7 +15,7 @@ class SongPage extends StatefulWidget {
 
 class _SongPageState extends State<SongPage> {
   AudioPlayer audioPlayer = AudioPlayer();
-  Music music = Music.musics[1];
+  Music music = Music.musics[0];
 
   @override
   void initState() {
@@ -52,7 +53,7 @@ class _SongPageState extends State<SongPage> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: const _CustomAppBarMusic(),
-        bottomNavigationBar: const _CustomNavBarMusic(),
+        // bottomNavigationBar: const _CustomNavBarMusic(),
         body: Container(
           alignment: Alignment.center,
           width: double.infinity,
@@ -69,11 +70,14 @@ class _SongPageState extends State<SongPage> {
                   fit: BoxFit.cover,
                 ),
               ),
+              const SizedBox(
+                height: 10,
+              ),
               Text(music.title,
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       color: Colors.white, fontWeight: FontWeight.bold)),
               const SizedBox(
-                height: 5,
+                height: 10,
               ),
               Text(
                 music.artist,
@@ -82,9 +86,49 @@ class _SongPageState extends State<SongPage> {
                     .bodySmall!
                     .copyWith(color: Colors.white),
               ),
+              const SizedBox(
+                height: 20,
+              ),
+              _MusicPlayer(
+                  seekBarDataStream: _seekBarDataStream,
+                  audioPlayer: audioPlayer),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _MusicPlayer extends StatelessWidget {
+  const _MusicPlayer({
+    super.key,
+    required Stream<SeekBarData> seekBarDataStream,
+    required this.audioPlayer,
+  }) : _seekBarDataStream = seekBarDataStream;
+
+  final Stream<SeekBarData> _seekBarDataStream;
+  final AudioPlayer audioPlayer;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 5, bottom: 15, right: 20, left: 20),
+      child: Column(
+        children: [
+          StreamBuilder<SeekBarData>(
+            stream: _seekBarDataStream,
+            builder: (context, snapshot) {
+              final positionData = snapshot.data;
+              return SeekBar(
+                position: positionData?.position ?? Duration.zero,
+                duration: positionData?.duration ?? Duration.zero,
+                onChangeEnd: audioPlayer.seek,
+              );
+            },
+          ),
+          PlayerButtons(audioPlayer: audioPlayer)
+        ],
       ),
     );
   }
@@ -124,22 +168,22 @@ class _CustomAppBarMusic extends StatelessWidget
   Size get preferredSize => const Size.fromHeight(56.0);
 }
 
-class _CustomNavBarMusic extends StatelessWidget {
-  const _CustomNavBarMusic();
+// class _CustomNavBarMusic extends StatelessWidget {
+//   const _CustomNavBarMusic();
 
-  @override
-  Widget build(BuildContext context) {
-    return BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.transparent,
-        unselectedItemColor: Colors.white,
-        selectedItemColor: const Color.fromRGBO(36, 131, 21, 1),
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.music_note), label: 'Music'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-        ]);
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return BottomNavigationBar(
+//         type: BottomNavigationBarType.fixed,
+//         backgroundColor: Colors.transparent,
+//         unselectedItemColor: Colors.white,
+//         selectedItemColor: const Color.fromRGBO(36, 131, 21, 1),
+//         showSelectedLabels: false,
+//         showUnselectedLabels: false,
+//         items: const [
+//           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+//           BottomNavigationBarItem(icon: Icon(Icons.music_note), label: 'Music'),
+//           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+//         ]);
+//   }
+// }

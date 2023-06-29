@@ -5,12 +5,14 @@ class Song {
   final String url;
   final String coverUrl;
 
-  Song(
-      {required this.title,
-      required this.artist,
-      required this.description,
-      required this.url,
-      required this.coverUrl});
+  Song({
+    required this.title,
+    required this.artist,
+    required this.description,
+    required this.url,
+    required this.coverUrl,
+  });
+
   static List<Song> songs = [
     Song(
       title: 'Famous Last Words',
