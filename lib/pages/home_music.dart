@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:rhythm_player/models/music_play_model.dart';
 import 'package:rhythm_player/models/song_model.dart';
 import 'package:rhythm_player/widget/main_music_card.dart';
@@ -96,7 +98,7 @@ class _DiscoverMusic extends StatelessWidget {
             height: 10,
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 10),
+            padding: const EdgeInsets.only(top: 10, left: 20),
             child: Text(
               'Last Playing',
               style: Theme.of(context)
@@ -111,8 +113,40 @@ class _DiscoverMusic extends StatelessWidget {
   }
 }
 
-class _CustomNavBar extends StatelessWidget {
+class _CustomNavBar extends StatefulWidget {
   const _CustomNavBar();
+
+  @override
+  State<_CustomNavBar> createState() => _CustomNavBarState();
+}
+
+class _CustomNavBarState extends State<_CustomNavBar> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    // Navigator.pushNamed(context, '/page${index + 1}');
+    switch (index) {
+      case 0:
+        Navigator.pushNamed(context, '/home');
+        break;
+      case 1:
+        Navigator.pushNamed(context, '/playlist_list');
+        break;
+      case 2:
+        Navigator.pushNamed(context, '/favourite');
+        break;
+      case 3:
+        Navigator.pushNamed(context, '/music');
+        break;
+      case 4:
+        Navigator.pushNamed(context, '/profile');
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +154,7 @@ class _CustomNavBar extends StatelessWidget {
         type: BottomNavigationBarType.fixed,
         backgroundColor: const Color.fromRGBO(36, 131, 21, 1),
         unselectedItemColor: Colors.white,
-        selectedItemColor: Colors.black,
+        selectedItemColor: Colors.white,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         items: const [
@@ -131,7 +165,9 @@ class _CustomNavBar extends StatelessWidget {
               icon: Icon(Icons.favorite_outline), label: 'Favourite'),
           BottomNavigationBarItem(icon: Icon(Icons.music_note), label: 'Music'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-        ]);
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped);
   }
 }
 
@@ -141,14 +177,36 @@ class _CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      systemOverlayStyle: const SystemUiOverlayStyle(
+        systemNavigationBarColor: Colors.black, // Navigation bar
+        statusBarColor: Color.fromRGBO(36, 131, 21, 1),
+      ),
       backgroundColor: Colors.transparent,
       elevation: 0,
-      leading: const Icon(Icons.grid_view_outlined),
+      leading: const Padding(
+        padding: EdgeInsets.only(top: 20, bottom: 20),
+        child: Icon(Icons.grid_view_outlined),
+      ),
       actions: [
-        Container(
-          margin: const EdgeInsets.only(right: 20),
-          child: const CircleAvatar(backgroundColor: Colors.green, child: Icon(Icons.person_outlined)),
-        )
+        Padding(
+          padding: const EdgeInsets.only(bottom: 20.0),
+          child: InkWell(
+            onTap: () {
+              Get.toNamed(
+                '/profile',
+              );
+            },
+            child: Container(
+              margin: const EdgeInsets.only(
+                right: 20,
+                top: 20,
+              ),
+              child: const CircleAvatar(
+                  backgroundColor: Colors.green,
+                  child: Icon(Icons.person_outlined)),
+            ),
+          ),
+        ),
       ],
     );
   }

@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:rhythm_player/models/music_play_model.dart';
-import 'package:rhythm_player/widget/main_music_card.dart';
 
-class MusicList extends StatelessWidget {
-  const MusicList({super.key});
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<Music> music = Music.musics;
     return Container(
       width: double.infinity,
       alignment: Alignment.center,
@@ -28,19 +25,11 @@ class MusicList extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Text(
-                  'Musics',
+                  'Profile',
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                       fontWeight: FontWeight.bold, color: Colors.white),
                 ),
               ),
-              ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: music.length,
-                itemBuilder: ((context, index) {
-                  return MainMusicCard(music: music[index]);
-                }),
-              )
             ],
           ),
         ),
@@ -73,18 +62,11 @@ class _CustomAppBarMusic extends StatelessWidget
             child: const Icon(Icons.arrow_back_ios)),
       ),
       actions: [
-        InkWell(
-          onTap: () {
-            Get.toNamed(
-              '/profile',
-            );
-          },
-          child: Container(
-            margin: const EdgeInsets.only(right: 20, top: 20),
-            child: const CircleAvatar(
-                backgroundColor: Colors.green,
-                child: Icon(Icons.person_outlined)),
-          ),
+        Container(
+          margin: const EdgeInsets.only(right: 20, top: 20),
+          child: const CircleAvatar(
+              backgroundColor: Colors.green,
+              child: Icon(Icons.person_outlined)),
         ),
       ],
     );

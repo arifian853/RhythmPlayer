@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:rhythm_player/models/music_play_model.dart';
@@ -21,9 +22,15 @@ class _SongPageState extends State<SongPage> {
   void initState() {
     super.initState();
 
-    audioPlayer.setAudioSource(ConcatenatingAudioSource(children: [
-      AudioSource.uri(Uri.parse('asset:///${music.url}')),
-    ]));
+    audioPlayer.setAudioSource(
+      ConcatenatingAudioSource(
+        children: [
+          AudioSource.uri(
+            Uri.parse('asset:///${music.url}'),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -149,10 +156,15 @@ class _CustomAppBarMusic extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      systemOverlayStyle: const SystemUiOverlayStyle(
+        systemNavigationBarColor:
+            Color.fromRGBO(36, 131, 21, 1), // Navigation bar
+        statusBarColor: Color.fromRGBO(36, 131, 21, 1),
+      ),
       backgroundColor: Colors.transparent,
       elevation: 0,
       leading: Padding(
-        padding: const EdgeInsets.only(left: 20.0),
+        padding: const EdgeInsets.only(left: 20.0, top: 20),
         child: InkWell(
             onTap: () {
               Get.toNamed(
@@ -162,12 +174,21 @@ class _CustomAppBarMusic extends StatelessWidget
             child: const Icon(Icons.arrow_back_ios)),
       ),
       actions: [
-        Container(
-          margin: const EdgeInsets.only(right: 20),
-          child: const CircleAvatar(
-              backgroundColor: Colors.green,
-              child: Icon(Icons.person_outlined)),
-        )
+        InkWell(
+          onTap: () {
+            Get.toNamed(
+              '/profile',
+            );
+          },
+          child: Container(
+            margin: const EdgeInsets.only(
+              right: 20, top: 20
+            ),
+            child: const CircleAvatar(
+                backgroundColor: Colors.green,
+                child: Icon(Icons.person_outlined)),
+          ),
+        ),
       ],
     );
   }
@@ -175,23 +196,3 @@ class _CustomAppBarMusic extends StatelessWidget
   @override
   Size get preferredSize => const Size.fromHeight(56.0);
 }
-
-// class _CustomNavBarMusic extends StatelessWidget {
-//   const _CustomNavBarMusic();
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return BottomNavigationBar(
-//         type: BottomNavigationBarType.fixed,
-//         backgroundColor: Colors.transparent,
-//         unselectedItemColor: Colors.white,
-//         selectedItemColor: const Color.fromRGBO(36, 131, 21, 1),
-//         showSelectedLabels: false,
-//         showUnselectedLabels: false,
-//         items: const [
-//           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-//           BottomNavigationBarItem(icon: Icon(Icons.music_note), label: 'Music'),
-//           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-//         ]);
-//   }
-// }

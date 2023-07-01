@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rhythm_player/pages/favourite_music.dart';
 import 'package:rhythm_player/pages/home_music.dart';
 import 'package:rhythm_player/pages/music_list.dart';
+import 'package:rhythm_player/pages/playlist_list.dart';
 import 'package:rhythm_player/pages/playlist_page.dart';
+import 'package:rhythm_player/pages/profile.dart';
 import 'package:rhythm_player/pages/song_page.dart';
 import 'package:rhythm_player/pages/splash_screen.dart';
 
@@ -29,7 +32,10 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/home', page: () => const HomeMusic()),
         GetPage(name: '/song', page: () => const SongPage()),
         GetPage(name: '/music', page: () => const MusicList()),
+        GetPage(name: '/playlist_list', page: () => const PlaylistList()),
         GetPage(name: '/playlist', page: () => const PlaylistPage()),
+        GetPage(name: '/favourite', page: () => const FavouritePage()),
+        GetPage(name: '/profile', page: () => const ProfilePage()),
       ],
     );
   }

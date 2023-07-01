@@ -21,7 +21,7 @@ class PlayerButtons extends StatelessWidget {
               onPressed: () {},
               iconSize: 25,
               icon: const Icon(
-                Icons.shuffle,
+                Icons.favorite_outline,
                 color: Colors.white,
               ),
             );

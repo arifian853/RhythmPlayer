@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:rhythm_player/models/music_play_model.dart';
-import 'package:rhythm_player/widget/main_music_card.dart';
+import 'package:rhythm_player/models/playlist_model.dart';
+import 'package:rhythm_player/widget/playlist_list_card.dart';
 
-class MusicList extends StatelessWidget {
-  const MusicList({super.key});
+class PlaylistList extends StatelessWidget {
+  const PlaylistList({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<Music> music = Music.musics;
+    List<Playlist> playlist = Playlist.playlists;
     return Container(
       width: double.infinity,
       alignment: Alignment.center,
@@ -28,7 +28,7 @@ class MusicList extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Text(
-                  'Musics',
+                  'Playlists',
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                       fontWeight: FontWeight.bold, color: Colors.white),
                 ),
@@ -36,9 +36,9 @@ class MusicList extends StatelessWidget {
               ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: music.length,
+                itemCount: playlist.length,
                 itemBuilder: ((context, index) {
-                  return MainMusicCard(music: music[index]);
+                  return PlaylistListCard(playlist: playlist[index]);
                 }),
               )
             ],

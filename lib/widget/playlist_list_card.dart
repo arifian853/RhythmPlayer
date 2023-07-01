@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rhythm_player/models/music_play_model.dart';
+import 'package:rhythm_player/models/playlist_model.dart';
 
-class MainMusicCard extends StatelessWidget {
-  const MainMusicCard({
+class PlaylistListCard extends StatelessWidget {
+  const PlaylistListCard({
     super.key,
-    required this.music,
+    required this.playlist,
   });
 
-  final Music music;
+  final Playlist playlist;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.toNamed('/song', arguments: music);
+        Get.toNamed('/playlist', arguments: playlist);
       },
       child: Container(
         height: 65,
@@ -31,7 +31,7 @@ class MainMusicCard extends StatelessWidget {
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: Image(
-                    image: AssetImage(music.posterUrl),
+                    image: AssetImage(playlist.imageUrl),
                     height: 50,
                     width: 50,
                     fit: BoxFit.cover,
@@ -46,36 +46,21 @@ class MainMusicCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    music.title,
+                    playlist.title,
                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                         color: Colors.white, fontWeight: FontWeight.bold),
                   ),
-                  Text(music.artist,
+                  Text(playlist.description,
                       style: Theme.of(context).textTheme.bodySmall!.copyWith(
                             color: Colors.white,
                           ))
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: Text(
-                music.length,
-                style: Theme.of(context)
-                    .textTheme
-                    .labelMedium!
-                    .copyWith(color: Colors.white),
-              ),
-            ),
             IconButton(
-              onPressed: () {
-                Get.toNamed(
-                  '/song',
-                  arguments: music,
-                );
-              },
+              onPressed: () {},
               icon: const Icon(
-                Icons.play_circle,
+                Icons.more_horiz,
                 color: Colors.white,
               ),
             ),

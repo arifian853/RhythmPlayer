@@ -63,7 +63,7 @@ class _SeekBarState extends State<SeekBar> {
                   overlayRadius: 10,
                 ),
                 activeTrackColor: const Color.fromRGBO(36, 131, 21, 1),
-                inactiveTrackColor: const Color.fromRGBO(36, 131, 21, 1),
+                inactiveTrackColor: const Color.fromARGB(255, 15, 65, 7),
                 thumbColor: const Color.fromRGBO(36, 131, 21, 1),
                 overlayColor: const Color.fromRGBO(36, 131, 21, 1)),
             child: Slider(
