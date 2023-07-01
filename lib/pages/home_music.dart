@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:rhythm_player/models/music_play_model.dart';
-import 'package:rhythm_player/models/song_model.dart';
 import 'package:rhythm_player/widget/main_music_card.dart';
 import 'package:rhythm_player/widget/song_card.dart';
 
@@ -11,7 +10,6 @@ class HomeMusic extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Song> songs = Song.songs;
     List<Music> musics = Music.musics;
     return Container(
       decoration: const BoxDecoration(color: Color.fromRGBO(12, 12, 12, 0.6)),
@@ -27,9 +25,9 @@ class HomeMusic extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.30,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: songs.length,
+                  itemCount: musics.length,
                   itemBuilder: (context, index) {
-                    return SongCard(song: songs[index]);
+                    return SongCard(music: musics[index]);
                   }),
             ),
             Column(
@@ -50,7 +48,7 @@ class HomeMusic extends StatelessWidget {
                   itemBuilder: ((context, index) {
                     return MainMusicCard(music: musics[index]);
                   }),
-                )
+                ),
               ],
             )
           ]),
@@ -98,7 +96,7 @@ class _DiscoverMusic extends StatelessWidget {
             height: 10,
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 10, left: 20),
+            padding: const EdgeInsets.only(top: 10, left: 10),
             child: Text(
               'Last Playing',
               style: Theme.of(context)
@@ -184,27 +182,26 @@ class _CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Colors.transparent,
       elevation: 0,
       leading: const Padding(
-        padding: EdgeInsets.only(top: 20, bottom: 20),
+        padding: EdgeInsets.only(
+          top: 20,
+        ),
         child: Icon(Icons.grid_view_outlined),
       ),
       actions: [
-        Padding(
-          padding: const EdgeInsets.only(bottom: 20.0),
-          child: InkWell(
-            onTap: () {
-              Get.toNamed(
-                '/profile',
-              );
-            },
-            child: Container(
-              margin: const EdgeInsets.only(
-                right: 20,
-                top: 20,
-              ),
-              child: const CircleAvatar(
-                  backgroundColor: Colors.green,
-                  child: Icon(Icons.person_outlined)),
+        InkWell(
+          onTap: () {
+            Get.toNamed(
+              '/profile',
+            );
+          },
+          child: Container(
+            margin: const EdgeInsets.only(
+              right: 20,
+              top: 20,
             ),
+            child: const CircleAvatar(
+                backgroundColor: Colors.green,
+                child: Icon(Icons.person_outlined)),
           ),
         ),
       ],

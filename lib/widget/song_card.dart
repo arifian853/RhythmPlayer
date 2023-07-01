@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rhythm_player/models/song_model.dart';
+import 'package:rhythm_player/models/music_play_model.dart';
 
 class SongCard extends StatelessWidget {
   const SongCard({
     super.key,
-    required this.song,
+    required this.music,
   });
 
-  final Song song;
+  final Music music;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.toNamed('/playlist', arguments: song);
+        Get.toNamed('/song', arguments: music);
       },
       child: Container(
         margin: const EdgeInsets.only(left: 10.0),
@@ -26,13 +26,13 @@ class SongCard extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15.0),
                 image: DecorationImage(
-                  image: AssetImage(song.coverUrl),
+                  image: AssetImage(music.posterUrl),
                   fit: BoxFit.cover,
                 ),
               ),
             ),
             Container(
-              height: 50,
+              height: 65,
               width: MediaQuery.of(context).size.width * 0.45,
               decoration: BoxDecoration(
                 color: Colors.black12.withOpacity(0.6),
@@ -48,7 +48,7 @@ class SongCard extends StatelessWidget {
                         right: 10.0,
                       ),
                       child: Text(
-                        'Discover Weekly',
+                        music.title,
                         style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             color: Colors.white, fontWeight: FontWeight.bold),
                       ),
@@ -60,9 +60,9 @@ class SongCard extends StatelessWidget {
                         right: 10.0,
                       ),
                       child: Text(
-                        'Weekly favourite musics',
+                        music.artist,
                         style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                            color: Colors.white, fontWeight: FontWeight.bold),
+                            color: Colors.white, ),
                       ),
                     ),
                   ]),

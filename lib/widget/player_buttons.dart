@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 
 class PlayerButtons extends StatelessWidget {
@@ -18,7 +19,11 @@ class PlayerButtons extends StatelessWidget {
           stream: audioPlayer.sequenceStateStream,
           builder: (context, index) {
             return IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.toNamed(
+                  '/favourite',
+                );
+              },
               iconSize: 25,
               icon: const Icon(
                 Icons.favorite_outline,

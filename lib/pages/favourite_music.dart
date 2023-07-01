@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:rhythm_player/models/music_play_model.dart';
+import 'package:rhythm_player/widget/main_music_card.dart';
 
 class FavouritePage extends StatelessWidget {
   const FavouritePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    List<Music> musics = Music.musics;
     return Container(
       width: double.infinity,
       alignment: Alignment.center,
@@ -15,22 +18,32 @@ class FavouritePage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         appBar: const _CustomAppBarMusic(),
         bottomNavigationBar: const _CustomNavBar(),
-        body: Container(
-          alignment: Alignment.center,
-          width: double.infinity,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Text(
-                  'Favourite',
-                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                      fontWeight: FontWeight.bold, color: Colors.white),
+        body: SingleChildScrollView(
+          child: Container(
+            alignment: Alignment.center,
+            width: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(
+                    'Favourite',
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                        fontWeight: FontWeight.bold, color: Colors.white),
+                  ),
                 ),
-              ),
-            ],
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: musics.length,
+                  itemBuilder: ((context, index) {
+                    return MainMusicCard(music: musics[index]);
+                  }),
+                )
+              ],
+            ),
           ),
         ),
       ),
