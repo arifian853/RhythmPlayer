@@ -1,9 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:rhythm_player/auth.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  ProfilePage({super.key});
+  // final User? user = Auth().currentUser;
+
+  // Future<void> signOut() async {
+  //   await Auth().signOut();
+  // }
+
+  // Widget _userId() {
+  //   return Text(user?.email ?? 'User Email');
+  // }
+
+  // Widget _signOutButton() {
+  //   return ElevatedButton(
+  //     onPressed: signOut,
+  //     child: const Text('Logout'),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -21,16 +39,30 @@ class ProfilePage extends StatelessWidget {
             width: double.infinity,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Text(
                     'Profile',
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        fontWeight: FontWeight.bold, color: Colors.white),
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                   ),
                 ),
+                const SizedBox(
+                  height: 20.0,
+                ),
+                Text(
+                  // 'Your email : $_userId',
+                  'Your email : example@email.com',
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                ),
+                // _signOutButton(),
               ],
             ),
           ),

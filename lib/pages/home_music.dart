@@ -12,7 +12,9 @@ class HomeMusic extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Music> musics = Music.musics;
     return Container(
-      decoration: const BoxDecoration(color: Color.fromRGBO(12, 12, 12, 0.6)),
+      decoration: const BoxDecoration(
+        color: Color.fromRGBO(12, 12, 12, 0.6),
+      ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: const _CustomAppBar(),

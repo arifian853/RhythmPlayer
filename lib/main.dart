@@ -8,8 +8,12 @@ import 'package:rhythm_player/pages/playlist_page.dart';
 import 'package:rhythm_player/pages/profile.dart';
 import 'package:rhythm_player/pages/song_page.dart';
 import 'package:rhythm_player/pages/splash_screen.dart';
+// import 'package:rhythm_player/widget_tree.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -35,7 +39,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/playlist_list', page: () => const PlaylistList()),
         GetPage(name: '/playlist', page: () => const PlaylistPage()),
         GetPage(name: '/favourite', page: () => const FavouritePage()),
-        GetPage(name: '/profile', page: () => const ProfilePage()),
+        GetPage(name: '/profile', page: () => ProfilePage()),
       ],
     );
   }
