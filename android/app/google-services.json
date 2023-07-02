@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "600078725513",
-    "project_id": "rhythm-player-app",
-    "storage_bucket": "rhythm-player-app.appspot.com"
+    "project_number": "262896700543",
+    "project_id": "rhythmplayer-music-app-auth",
+    "storage_bucket": "rhythmplayer-music-app-auth.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:600078725513:android:c44cbe43ff892b91a07158",
+        "mobilesdk_app_id": "1:262896700543:android:da084ab5b9346aff05434a",
         "android_client_info": {
           "package_name": "com.example.rhythm_player"
         }
       },
       "oauth_client": [
         {
-          "client_id": "600078725513-rtc2orlu8k7c712kfncsofgt1a0s4066.apps.googleusercontent.com",
+          "client_id": "262896700543-g1mb9525boim8nph5fan4nvlcbmle6ob.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDsP0x479QJmrBh5xgzmVa3iL9lKUFvHqM"
+          "current_key": "AIzaSyDO46hSsa__gG7Q5qbWG1yVw3I_s5R5vn4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "600078725513-rtc2orlu8k7c712kfncsofgt1a0s4066.apps.googleusercontent.com",
+              "client_id": "262896700543-aqiia083842d2j6jpcpno372b4u7htm3.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
