@@ -30,8 +30,8 @@ class MainMusicCard extends StatelessWidget {
               padding: const EdgeInsets.only(left: 10.0),
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
-                  child: Image(
-                    image: AssetImage(music.posterUrl),
+                  child: const Image(
+                    image: AssetImage('assets/images/cover-default.png'),
                     height: 50,
                     width: 50,
                     fit: BoxFit.cover,
@@ -57,16 +57,16 @@ class MainMusicCard extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: Text(
-                music.length,
-                style: Theme.of(context)
-                    .textTheme
-                    .labelMedium!
-                    .copyWith(color: Colors.white),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(right: 8.0),
+            //   child: Text(
+            //     music.length,
+            //     style: Theme.of(context)
+            //         .textTheme
+            //         .labelMedium!
+            //         .copyWith(color: Colors.white),
+            //   ),
+            // ),
             IconButton(
               onPressed: () {
                 Get.toNamed(

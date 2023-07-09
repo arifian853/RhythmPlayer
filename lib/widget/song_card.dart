@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rhythm_player/models/music_play_model.dart';
+import 'package:rhythm_player/models/playlist_model.dart';
 
 class SongCard extends StatelessWidget {
   const SongCard({
     super.key,
-    required this.music,
+    required this.playlist,
   });
 
-  final Music music;
+  final Playlist playlist;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.toNamed('/song', arguments: music);
+        Get.toNamed('/playlist', arguments: playlist);
       },
       child: Container(
         margin: const EdgeInsets.only(left: 10.0),
@@ -24,9 +24,10 @@ class SongCard extends StatelessWidget {
             Container(
               width: MediaQuery.of(context).size.width * 0.45,
               decoration: BoxDecoration(
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(15.0),
                 image: DecorationImage(
-                  image: AssetImage(music.posterUrl),
+                  image: AssetImage(playlist.imageUrl),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -43,12 +44,9 @@ class SongCard extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(
-                        top: 10.0,
-                        left: 10.0,
-                        right: 10.0,
-                      ),
+                          top: 10.0, left: 10.0, right: 10.0, bottom: 5.0),
                       child: Text(
-                        music.title,
+                        playlist.title,
                         style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             color: Colors.white, fontWeight: FontWeight.bold),
                       ),
@@ -60,9 +58,10 @@ class SongCard extends StatelessWidget {
                         right: 10.0,
                       ),
                       child: Text(
-                        music.artist,
+                        playlist.description,
                         style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                            color: Colors.white, ),
+                              color: Colors.white,
+                            ),
                       ),
                     ),
                   ]),

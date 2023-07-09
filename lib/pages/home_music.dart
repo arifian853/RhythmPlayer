@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:rhythm_player/models/music_play_model.dart';
+import 'package:rhythm_player/models/playlist_model.dart';
 import 'package:rhythm_player/widget/main_music_card.dart';
 import 'package:rhythm_player/widget/song_card.dart';
 
@@ -11,6 +12,7 @@ class HomeMusic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Music> musics = Music.musics;
+    List<Playlist> playlist = Playlist.playlists;
     return Container(
       decoration: const BoxDecoration(
         color: Color.fromRGBO(12, 12, 12, 0.6),
@@ -26,11 +28,12 @@ class HomeMusic extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.30,
               child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: musics.length,
-                  itemBuilder: (context, index) {
-                    return SongCard(music: musics[index]);
-                  }),
+                scrollDirection: Axis.horizontal,
+                itemCount: playlist.length,
+                itemBuilder: ((context, index) {
+                  return SongCard(playlist: playlist[index]);
+                }),
+              ),
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,26 +75,16 @@ class _DiscoverMusic extends StatelessWidget {
         children: [
           const SizedBox(
             height: 10,
+            width: double.infinity,
           ),
           Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: TextFormField(
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: const Color.fromRGBO(36, 131, 21, 1),
-                hintText: 'Search now...',
-                hintStyle: Theme.of(context)
-                    .textTheme
-                    .bodyMedium!
-                    .copyWith(color: Colors.white),
-                suffixIcon: const Icon(
-                  Icons.search,
-                  color: Colors.white,
-                ),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25.0),
-                    borderSide: BorderSide.none),
-              ),
+            padding: const EdgeInsets.only(top: 10.0, left: 10),
+            child: Text(
+              "Hello ! User 1!",
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge!
+                  .copyWith(fontWeight: FontWeight.bold, color: Colors.white),
             ),
           ),
           const SizedBox(
@@ -100,7 +93,7 @@ class _DiscoverMusic extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 10),
             child: Text(
-              'Last Playing',
+              'Your Playlist',
               style: Theme.of(context)
                   .textTheme
                   .titleLarge!

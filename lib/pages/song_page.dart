@@ -103,8 +103,8 @@ class _MusicPlayer extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(15.0),
-            child: Image(
-              image: AssetImage(music.posterUrl),
+            child: const Image(
+              image: AssetImage('assets/images/cover-default.png'),
               height: 250,
               width: 250,
               fit: BoxFit.cover,
@@ -181,9 +181,7 @@ class _CustomAppBarMusic extends StatelessWidget
             );
           },
           child: Container(
-            margin: const EdgeInsets.only(
-              right: 20, top: 20
-            ),
+            margin: const EdgeInsets.only(right: 20, top: 20),
             child: const CircleAvatar(
                 backgroundColor: Colors.green,
                 child: Icon(Icons.person_outlined)),
