@@ -29,13 +29,14 @@ class MainMusicCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 10.0),
               child: ClipRRect(
-                  borderRadius: BorderRadius.circular(15.0),
-                  child: const Image(
-                    image: AssetImage('assets/images/cover-default.png'),
-                    height: 50,
-                    width: 50,
-                    fit: BoxFit.cover,
-                  )),
+                borderRadius: BorderRadius.circular(15.0),
+                child: const Image(
+                  image: AssetImage('assets/images/cover-default.png'),
+                  height: 50,
+                  width: 50,
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
             const SizedBox(
               width: 20,
@@ -47,8 +48,13 @@ class MainMusicCard extends StatelessWidget {
                 children: [
                   Text(
                     music.title,
-                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                        color: Colors.white, fontWeight: FontWeight.bold),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyLarge!
+                        .copyWith(color: Colors.white),
+                  ),
+                  const SizedBox(
+                    height: 5,
                   ),
                   Text(music.artist,
                       style: Theme.of(context).textTheme.bodySmall!.copyWith(

@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
                 bodyColor: const Color.fromRGBO(0, 0, 0, 1),
                 displayColor: const Color.fromRGBO(0, 0, 0, 1),
               )),
-      home: const SplashScreen(),
+      home: const HomeMusic(),
       getPages: [
         GetPage(name: '/', page: () => const SplashScreen()),
         GetPage(name: '/home', page: () => const HomeMusic()),
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/playlist_list', page: () => const PlaylistList()),
         GetPage(name: '/playlist', page: () => const PlaylistPage()),
         GetPage(name: '/favourite', page: () => const FavouritePage()),
-        GetPage(name: '/profile', page: () => ProfilePage()),
+        GetPage(name: '/profile', page: () => const ProfilePage()),
       ],
     );
   }

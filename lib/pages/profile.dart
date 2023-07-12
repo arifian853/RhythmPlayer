@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 // import 'package:rhythm_player/auth.dart';
 
 class ProfilePage extends StatelessWidget {
-  ProfilePage({super.key});
+  const ProfilePage({super.key});
   // final User? user = Auth().currentUser;
 
   // Future<void> signOut() async {

@@ -50,6 +50,9 @@ class PlaylistListCard extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                         color: Colors.white, fontWeight: FontWeight.bold),
                   ),
+                  const SizedBox(
+                    height: 5,
+                  ),
                   Text(playlist.description,
                       style: Theme.of(context).textTheme.bodySmall!.copyWith(
                             color: Colors.white,

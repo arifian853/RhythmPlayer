@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:rhythm_player/models/music_play_model.dart';
+import 'package:on_audio_query/on_audio_query.dart';
+import 'package:rhythm_player/controller/player_controller.dart';
 import 'package:rhythm_player/models/playlist_model.dart';
-import 'package:rhythm_player/widget/main_music_card.dart';
 import 'package:rhythm_player/widget/song_card.dart';
 
 class HomeMusic extends StatelessWidget {
@@ -11,7 +11,7 @@ class HomeMusic extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Music> musics = Music.musics;
+    var controller = Get.put(PlayerController());
     List<Playlist> playlist = Playlist.playlists;
     return Container(
       decoration: const BoxDecoration(
@@ -46,13 +46,111 @@ class HomeMusic extends StatelessWidget {
                         fontWeight: FontWeight.bold, color: Colors.white),
                   ),
                 ),
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: musics.length,
-                  itemBuilder: ((context, index) {
-                    return MainMusicCard(music: musics[index]);
-                  }),
+                FutureBuilder<List<SongModel>>(
+                  future: controller.audioQuery.querySongs(
+                    ignoreCase: true,
+                    orderType: OrderType.ASC_OR_SMALLER,
+                    sortType: null,
+                    uriType: UriType.EXTERNAL,
+                  ),
+                  builder: (BuildContext context, snapshot) {
+                    if (snapshot.data == null) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    } else if (snapshot.data!.isEmpty) {
+                      return const Text("No songs found");
+                    } else {
+                      return ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: snapshot.data!.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Container(
+                            height: 65,
+                            margin: const EdgeInsets.only(
+                                top: 5.0, bottom: 5.0, left: 10.0, right: 10.0),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              color: const Color.fromARGB(221, 43, 42, 42),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10.0),
+                                  child: QueryArtworkWidget(
+                                    id: snapshot.data![index].id,
+                                    type: ArtworkType.AUDIO,
+                                    nullArtworkWidget: ClipRRect(
+                                      borderRadius: BorderRadius.circular(15.0),
+                                      child: const Image(
+                                        image: AssetImage(
+                                            'assets/images/cover-default.png'),
+                                        height: 50,
+                                        width: 50,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 20,
+                                ),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        snapshot.data![index].displayNameWOExt,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge!
+                                            .copyWith(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                        softWrap: false,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Text(
+                                        "${snapshot.data![index].artist}",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall!
+                                            .copyWith(
+                                              color: Colors.white,
+                                            ),
+                                        softWrap: false,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                IconButton(
+                                  onPressed: () {
+                                    controller
+                                        .playSong(snapshot.data![index].uri);
+                                  },
+                                  icon: const Icon(
+                                    Icons.play_circle,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      );
+                    }
+                  },
                 ),
               ],
             )
