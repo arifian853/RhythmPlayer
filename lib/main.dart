@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
                 bodyColor: const Color.fromRGBO(0, 0, 0, 1),
                 displayColor: const Color.fromRGBO(0, 0, 0, 1),
               )),
-      home: const HomeMusic(),
+      home: const SplashScreen(),
       getPages: [
         GetPage(name: '/', page: () => const SplashScreen()),
         GetPage(name: '/home', page: () => const HomeMusic()),

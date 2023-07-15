@@ -52,7 +52,7 @@ class MusicList extends StatelessWidget {
                       return ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        itemCount: snapshot.data?.length,
+                        itemCount: snapshot.data!.length,
                         itemBuilder: (BuildContext context, int index) {
                           return Container(
                             height: 65,
@@ -67,14 +67,18 @@ class MusicList extends StatelessWidget {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(left: 10.0),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(15.0),
-                                    child: const Image(
-                                      image: AssetImage(
-                                          'assets/images/cover-default.png'),
-                                      height: 50,
-                                      width: 50,
-                                      fit: BoxFit.cover,
+                                  child: QueryArtworkWidget(
+                                    id: snapshot.data![index].id,
+                                    type: ArtworkType.AUDIO,
+                                    nullArtworkWidget: ClipRRect(
+                                      borderRadius: BorderRadius.circular(15.0),
+                                      child: const Image(
+                                        image: AssetImage(
+                                            'assets/images/cover-default.png'),
+                                        height: 50,
+                                        width: 50,
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -119,7 +123,10 @@ class MusicList extends StatelessWidget {
                                   ),
                                 ),
                                 IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    controller.playSong(
+                                        snapshot.data![index].uri, index);
+                                  },
                                   icon: const Icon(
                                     Icons.play_circle,
                                     color: Colors.white,
