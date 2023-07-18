@@ -70,10 +70,13 @@ class HomeMusic extends StatelessWidget {
                           return InkWell(
                             onTap: () {
                               Get.to(
-                                  () => SongPlayerPage(
-                                        data: snapshot.data![index],
-                                      ),
-                                  transition: Transition.downToUp);
+                                () => SongPlayerPage(
+                                  data: snapshot.data![index],
+                                ),
+                                transition: Transition.upToDown,
+                              );
+                              controller.playSong(
+                                  snapshot.data![index].uri, index);
                             },
                             child: Container(
                               height: 65,

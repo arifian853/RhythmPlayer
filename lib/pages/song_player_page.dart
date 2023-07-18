@@ -62,32 +62,42 @@ class SongPlayerPage extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    Row(
-                      children: [
-                        Text(
-                          "0:00",
-                          style:
-                              Theme.of(context).textTheme.bodySmall!.copyWith(
-                                    color: Colors.white,
-                                  ),
-                        ),
-                        Expanded(
-                          child: Slider(
-                            value: 0.0,
-                            onChanged: (newValue) {},
-                            thumbColor: const Color.fromRGBO(36, 131, 21, 1),
-                            activeColor: const Color.fromRGBO(36, 131, 21, 1),
-                            inactiveColor: const Color.fromARGB(255, 15, 65, 7),
+                    Obx(
+                      () => Row(
+                        children: [
+                          Text(
+                            controller.position.value,
+                            style:
+                                Theme.of(context).textTheme.bodySmall!.copyWith(
+                                      color: Colors.white,
+                                    ),
                           ),
-                        ),
-                        Text(
-                          "0:00",
-                          style:
-                              Theme.of(context).textTheme.bodySmall!.copyWith(
-                                    color: Colors.white,
-                                  ),
-                        ),
-                      ],
+                          Expanded(
+                            child: Slider(
+                              min: const Duration(seconds: 0)
+                                  .inSeconds
+                                  .toDouble(),
+                              max: controller.max.value,
+                              value: controller.value.value,
+                              onChanged: (newValue) {
+                                controller
+                                    .changeDurationToSeconds(newValue.toInt());
+                              },
+                              thumbColor: const Color.fromRGBO(36, 131, 21, 1),
+                              activeColor: const Color.fromRGBO(36, 131, 21, 1),
+                              inactiveColor:
+                                  const Color.fromARGB(255, 15, 65, 7),
+                            ),
+                          ),
+                          Text(
+                            controller.duration.value,
+                            style:
+                                Theme.of(context).textTheme.bodySmall!.copyWith(
+                                      color: Colors.white,
+                                    ),
+                          ),
+                        ],
+                      ),
                     ),
                     const SizedBox(
                       height: 20,
