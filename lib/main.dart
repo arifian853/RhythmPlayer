@@ -8,12 +8,8 @@ import 'package:rhythm_player/pages/playlist_page.dart';
 import 'package:rhythm_player/pages/profile.dart';
 import 'package:rhythm_player/pages/song_page.dart';
 import 'package:rhythm_player/pages/splash_screen.dart';
-// import 'package:rhythm_player/widget_tree.dart';
-import 'package:firebase_core/firebase_core.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+void main() {
   runApp(const MyApp());
 }
 
